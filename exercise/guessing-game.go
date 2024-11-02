@@ -9,7 +9,7 @@ import (
 	"strings"
 )
 
-func main() {
+func guess() {
 	max := 100
 	secretNumber := rand.Intn(max)
 	fmt.Println("The secret number is", secretNumber)
