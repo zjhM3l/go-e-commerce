@@ -112,7 +112,7 @@ func query(word string) {
 	}
 }
 
-func main() {
+func simpleDict() {
 	if len(os.Args) != 2 {
 		fmt.Fprintf(os.Stderr, `usage: simpleDict WORD
 example: simpleDict hello
