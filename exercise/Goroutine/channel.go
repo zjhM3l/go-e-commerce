@@ -1,4 +1,4 @@
-package main
+package Goroutine
 
 // 通过通信来共享内存，而不是通过共享内存来通信
 

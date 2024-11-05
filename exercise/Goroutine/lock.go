@@ -1,4 +1,4 @@
-package main
+package Goroutine
 
 // 通过共享内存实现协程间的通信，需要保证并发安全
 

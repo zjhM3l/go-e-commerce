@@ -4,7 +4,7 @@
 // 解析api的post请求curl：https://curlconverter.com/go/
 // 解析response body：https://transform.tools/json-to-go
 
-package main
+package firststep
 
 import (
 	"bytes"

@@ -16,7 +16,7 @@
 // 8. socks5 server relay数据给 host
 // 9. host 返还响应给 socks5 server
 // 10. socks5 server 返还响应给 client
-package main
+package firststep
 
 import (
 	"bufio"
