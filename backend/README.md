@@ -18,3 +18,4 @@
 
 流程工具
   1. Postman API
+  2. Interface Description Language：Thrift严格定义接口IDL(Kitex RPC框架中的一部分)
