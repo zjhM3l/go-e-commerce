@@ -21,4 +21,4 @@
   2. 接口定义
     1. Interface Description Language：Thrift严格定义接口IDL
     2. 使用Kitex生成带有脚手架的代码
-    kitex -module github.com/zjhM3l/go-e-commerce -service demoservice demo.thrift
+    kitex -module github.com/zjhM3l/go-e-commerce -service checkoutservice idl/checkout.thrift
