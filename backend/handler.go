@@ -12,11 +12,26 @@ import (
 	user "github.com/zjhM3l/go-e-commerce/kitex_gen/user"
 )
 
+// UserServiceImpl implements the user service interface defined in the IDL.
+type UserServiceImpl struct{}
+
 // CartServiceImpl implements the cart service interface defined in the IDL.
 type CartServiceImpl struct{}
 
 // AuthServiceImpl implements the last service interface defined in the IDL.
 type AuthServiceImpl struct{}
+
+// ProductCatalogServiceImpl implements the product catalog service interface defined in the IDL.
+type ProductCatalogServiceImpl struct{}
+
+// PaymentServiceImpl implements the payment service interface defined in the IDL.
+type PaymentServiceImpl struct{}
+
+// OrderServiceImpl implements the order service interface defined in the IDL.
+type OrderServiceImpl struct{}
+
+// CheckoutServiceImpl implements the checkout service interface defined in the IDL.
+type CheckoutServiceImpl struct{}
 
 // DeliverTokenByRPC implements the AuthServiceImpl interface.
 func (s *AuthServiceImpl) DeliverTokenByRPC(ctx context.Context, request *auth.DeliverTokenReq) (resp *auth.DeliverTokenResp, err error) {
@@ -48,9 +63,6 @@ func (s *CartServiceImpl) EmptyCart(ctx context.Context, request *cart.EmptyCart
 	return
 }
 
-// UserServiceImpl implements the user service interface defined in the IDL.
-type UserServiceImpl struct{}
-
 // Register implements the UserServiceImpl interface.
 func (s *UserServiceImpl) Register(ctx context.Context, request *user.RegisterReq) (resp *user.RegisterResp, err error) {
 	// TODO: Your code here...
@@ -62,9 +74,6 @@ func (s *UserServiceImpl) Login(ctx context.Context, request *user.LoginReq) (re
 	// TODO: Your code here...
 	return
 }
-
-// ProductCatalogServiceImpl implements the product catalog service interface defined in the IDL.
-type ProductCatalogServiceImpl struct{}
 
 // ListProducts implements the ProductCatalogServiceImpl interface.
 func (s *ProductCatalogServiceImpl) ListProducts(ctx context.Context, request *product.ListProductsReq) (resp *product.ListProductsResp, err error) {
@@ -84,17 +93,11 @@ func (s *ProductCatalogServiceImpl) SearchProducts(ctx context.Context, request 
 	return
 }
 
-// PaymentServiceImpl implements the payment service interface defined in the IDL.
-type PaymentServiceImpl struct{}
-
 // Charge implements the PaymentServiceImpl interface.
 func (s *PaymentServiceImpl) Charge(ctx context.Context, request *payment.ChargeReq) (resp *payment.ChargeResp, err error) {
 	// TODO: Your code here...
 	return
 }
-
-// OrderServiceImpl implements the order service interface defined in the IDL.
-type OrderServiceImpl struct{}
 
 // PlaceOrder implements the OrderServiceImpl interface.
 func (s *OrderServiceImpl) PlaceOrder(ctx context.Context, request *order.PlaceOrderReq) (resp *order.PlaceOrderResp, err error) {
@@ -113,9 +116,6 @@ func (s *OrderServiceImpl) MarkOrderPaid(ctx context.Context, request *order.Mar
 	// TODO: Your code here...
 	return
 }
-
-// CheckoutServiceImpl implements the checkout service interface defined in the IDL.
-type CheckoutServiceImpl struct{}
 
 // Checkout implements the CheckoutServiceImpl interface.
 func (s *CheckoutServiceImpl) Checkout(ctx context.Context, request *checkout.CheckoutReq) (resp *checkout.CheckoutResp, err error) {
