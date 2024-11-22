@@ -4,7 +4,40 @@ package checkout
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	checkout "github.com/zjhM3l/go-e-commerce/biz/model/checkout"
 )
+
+// Checkout 执行结算
+// @router /checkout [POST]
+func Checkout(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req checkout.CheckoutReq
+
+	// 绑定并验证请求数据
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 示例逻辑：处理结算请求
+	userID := req.UserID
+	address := req.Address
+	card := req.CreditCard
+	orderID := fmt.Sprintf("order_%d", userID)          // 示例生成订单 ID
+	transactionID := fmt.Sprintf("txn_%d", userID)      // 示例生成交易 ID
+
+	// TODO: 添加实际结算逻辑，例如调用支付服务、创建订单等
+
+	// 构建响应
+	resp := &checkout.CheckoutResp{
+		OrderID:       orderID,
+		TransactionID: transactionID,
+	}
+
+	c.JSON(consts.StatusOK, resp)
+}
