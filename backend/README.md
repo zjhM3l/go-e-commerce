@@ -59,6 +59,8 @@ Makefile减少命令操作
 3. 操作
   1. frontend idl(为了练习，这里用的proto3)
   2. hertz快速生成服务端代码
+  cd到app/frontend
+  cwgo server --type HTTP --idl ../../idl/frontend/home.proto --service frontend -module github.com/zjhM3l/go-e-commerce/backend/app/frontend -I ../../idl
   3. 改造首页接口，渲染html代码
   4. 引入air热加载工具，方便调试
   5. bootstrap编写样式
