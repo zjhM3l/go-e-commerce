@@ -35,7 +35,7 @@ func PlaceOrder(ctx context.Context, c *app.RequestContext) {
 
 	// 构建响应
 	resp := &order.PlaceOrderResp{
-		Order: *orderResult,
+		Order: orderResult, // 保持为指针类型
 	}
 	c.JSON(consts.StatusOK, resp)
 }
@@ -83,9 +83,15 @@ func ListOrder(ctx context.Context, c *app.RequestContext) {
 		},
 	}
 
+	// 转换 orders 为 []*order.Order
+	orderPtrs := make([]*order.Order, len(orders))
+	for i := range orders {
+		orderPtrs[i] = &orders[i]
+	}
+
 	// 构建响应
 	resp := &order.ListOrderResp{
-		Orders: orders,
+		Orders: orderPtrs, // 使用指针切片
 	}
 	c.JSON(consts.StatusOK, resp)
 }
