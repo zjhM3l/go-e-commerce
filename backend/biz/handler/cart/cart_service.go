@@ -7,4 +7,85 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	cart "github.com/zjhM3l/go-e-commerce/biz/model/cart"
 )
+
+// AddItem 添加商品到购物车
+// @router /cart/add [POST]
+func AddItem(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req cart.AddItemReq
+
+	// 绑定并验证请求数据
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 示例逻辑：添加商品到购物车
+	// 实际逻辑可以是调用数据库或者缓存服务存储购物车信息
+	cartID := req.UserID
+	productID := req.Item.ProductID
+	quantity := req.Item.Quantity
+
+	// TODO: 添加商品到购物车的实际实现
+
+	// 构建响应
+	resp := &cart.AddItemResp{}
+	c.JSON(consts.StatusOK, resp)
+}
+
+// GetCart 获取购物车信息
+// @router /cart/get [GET]
+func GetCart(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req cart.GetCartReq
+
+	// 绑定并验证请求数据
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 示例逻辑：获取购物车信息
+	// 实际逻辑可以是从数据库或缓存中获取数据
+	userID := req.UserID
+
+	// 示例购物车数据
+	resp := &cart.GetCartResp{
+		Cart: &cart.Cart{ // 确保这里使用指针类型
+			UserID: userID,
+			Items: []*cart.CartItem{ // Items 也需要是指针类型的切片
+				{ProductID: 1, Quantity: 2},
+				{ProductID: 2, Quantity: 1},
+			},
+		},
+	}
+	c.JSON(consts.StatusOK, resp)
+}
+
+// EmptyCart 清空购物车
+// @router /cart/empty [POST]
+func EmptyCart(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req cart.EmptyCartReq
+
+	// 绑定并验证请求数据
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 示例逻辑：清空购物车
+	// 实际逻辑可以是从数据库或缓存中删除购物车数据
+	userID := req.UserID
+
+	// TODO: 清空购物车的实际实现
+
+	// 构建响应
+	resp := &cart.EmptyCartResp{}
+	c.JSON(consts.StatusOK, resp)
+}
