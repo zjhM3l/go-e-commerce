@@ -7,4 +7,98 @@ import (
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	product "github.com/zjhM3l/go-e-commerce/biz/model/product"
 )
+
+// ListProducts 列出产品
+// @router /product/list [POST]
+func ListProducts(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req product.ListProductsReq
+
+	// 绑定并验证请求数据
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 示例逻辑：分页返回产品列表
+	page := req.Page
+	pageSize := req.PageSize
+	categoryName := req.CategoryName
+
+	// TODO: 实际逻辑可以查询数据库或缓存，获取分页数据
+	products := []product.Product{
+		{ID: 1, Name: "Product 1", Description: "Description 1", Picture: "pic1.jpg", Price: 100.0, Categories: []string{categoryName}},
+		{ID: 2, Name: "Product 2", Description: "Description 2", Picture: "pic2.jpg", Price: 200.0, Categories: []string{categoryName}},
+	}
+
+	// 构建响应
+	resp := &product.ListProductsResp{
+		Products: products,
+	}
+	c.JSON(consts.StatusOK, resp)
+}
+
+// GetProduct 获取单个产品信息
+// @router /product/get [POST]
+func GetProduct(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req product.GetProductReq
+
+	// 绑定并验证请求数据
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 示例逻辑：根据产品 ID 获取产品信息
+	productID := req.ID
+
+	// TODO: 实际逻辑可以查询数据库获取产品数据
+	productInfo := product.Product{
+		ID:          productID,
+		Name:        "Product Name",
+		Description: "Product Description",
+		Picture:     "product.jpg",
+		Price:       150.0,
+		Categories:  []string{"Category 1", "Category 2"},
+	}
+
+	// 构建响应
+	resp := &product.GetProductResp{
+		Product: productInfo,
+	}
+	c.JSON(consts.StatusOK, resp)
+}
+
+// SearchProducts 搜索产品
+// @router /product/search [POST]
+func SearchProducts(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req product.SearchProductsReq
+
+	// 绑定并验证请求数据
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 示例逻辑：根据关键词搜索产品
+	query := req.Query
+
+	// TODO: 实际逻辑可以查询数据库或搜索服务
+	searchResults := []product.Product{
+		{ID: 3, Name: "Search Result 1", Description: "Match 1", Picture: "result1.jpg", Price: 300.0, Categories: []string{"Category 3"}},
+		{ID: 4, Name: "Search Result 2", Description: "Match 2", Picture: "result2.jpg", Price: 400.0, Categories: []string{"Category 4"}},
+	}
+
+	// 构建响应
+	resp := &product.SearchProductsResp{
+		Results: searchResults,
+	}
+	c.JSON(consts.StatusOK, resp)
+}
