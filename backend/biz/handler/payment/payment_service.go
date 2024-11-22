@@ -4,7 +4,38 @@ package payment
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/cloudwego/hertz/pkg/app"
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
+	payment "github.com/zjhM3l/go-e-commerce/biz/model/payment"
 )
+
+// Charge 执行支付
+// @router /payment/charge [POST]
+func Charge(ctx context.Context, c *app.RequestContext) {
+	var err error
+	var req payment.ChargeReq
+
+	// 绑定并验证请求数据
+	err = c.BindAndValidate(&req)
+	if err != nil {
+		c.String(consts.StatusBadRequest, err.Error())
+		return
+	}
+
+	// 示例逻辑：处理支付请求
+	amount := req.Amount
+	orderID := req.OrderID
+	userID := req.UserID
+	card := req.CreditCard
+
+	// TODO: 添加实际支付处理逻辑，例如调用第三方支付接口
+	transactionID := fmt.Sprintf("txn_%d_%s", userID, orderID)
+
+	// 构建响应
+	resp := &payment.ChargeResp{
+		TransactionID: transactionID,
+	}
+	c.JSON(consts.StatusOK, resp)
+}
