@@ -22,5 +22,10 @@
     1. Interface Description Language：Thrift严格定义接口IDL
     2. 使用Kitex生成带有脚手架的代码
     kitex -module github.com/zjhM3l/go-e-commerce -service checkoutservice idl/checkout.thrift
-  3. 服务注册与发现Etcd（见Go三件套笔记对应部分和代码示例）D:\studyANDworkFiles\bytedance24\kitex-registry-etcd-sample\registry-etcd\example\client\main.go
-  4. opentelemetry检测，打通kitex与hertz
+    3. 使用Hertz生成代码
+    hz new -module github.com/zjhM3l/go-e-commerce -idl idl/auth.thrift
+    如果有更新
+    hz update -idl idl/user.thrift
+  3. Kitex-服务注册与发现Etcd，Nacos，Zookeeper（最后用的ETCD）（见Go三件套笔记对应部分和代码示例）D:\studyANDworkFiles\bytedance24\kitex-registry-etcd-sample\registry-etcd\example\client\main.go
+  4. 建议使用Kitex的XDS扩展，多泳道做多套测试环境维护（多人开发）
+  5. opentelemetry检测，打通gorm、kitex与hertz三件套，全流程链路追踪、检测、日志打通
