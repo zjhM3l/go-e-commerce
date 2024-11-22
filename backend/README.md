@@ -61,7 +61,11 @@ Makefile减少命令操作
   2. hertz快速生成服务端代码
   cd到app/frontend
   cwgo server --type HTTP --idl ../../idl/frontend/home.proto --service frontend -module github.com/zjhM3l/go-e-commerce/backend/app/frontend -I ../../idl
-  3. 改造首页接口，渲染html代码
+  业务逻辑biz
+    dal数据库访问层
+    handler=controller
+    service负责主要的业务逻辑
+  3. 改造首页接口，渲染html代码(hertz官方文档HTML渲染部分章节)
   4. 引入air热加载工具，方便调试
   5. bootstrap编写样式
   6. 布局优化

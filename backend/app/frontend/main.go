@@ -37,6 +37,9 @@ func main() {
 	})
 
 	router.GeneratedRegister(h)
+	// 节选自https://www.cloudwego.io/zh/docs/hertz/tutorials/basic-feature/render/
+	// HTML 模板渲染
+	h.LoadHTMLGlob("template/*")
 
 	h.Spin()
 }
