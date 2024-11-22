@@ -22,14 +22,19 @@
 
 流程工具
   1. API测试工具Postman API
-  2. 接口定义
+  2. 接口定义-cwgo+thrift
     1. Interface Description Language：Thrift严格定义接口IDL
-    2. 使用Kitex生成带有脚手架的代码
+    2. 安装cwgo
+    3. cwgo终端自动补全功能CloudWeGo All in one 代码生成工具
+    添加自动补全组件终端cwgo然后可以查看
+    创建server项目：mkdir -p app/service_name
+    cwgo server --type RPC --module github.com/zjhM3l/go-e-commerce/app/service_name --service service_name --idl ../../idl/service.thrift
+    <!-- 2. 使用Kitex生成带有脚手架的代码
     kitex -module github.com/zjhM3l/go-e-commerce -service checkoutservice idl/checkout.thrift
     3. 使用Hertz生成代码
     hz new -module github.com/zjhM3l/go-e-commerce -idl idl/auth.thrift
     如果有更新
-    hz update -idl idl/user.thrift
+    hz update -idl idl/user.thrift -->
   3. Kitex-服务注册与发现Etcd，Nacos，Zookeeper（最后用的ETCD）（见Go三件套笔记对应部分和代码示例）
   注册中心用consol，配置中心用etcd
   D:\studyANDworkFiles\bytedance24\kitex-registry-etcd-sample\registry-etcd\example\client\main.go
