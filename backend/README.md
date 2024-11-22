@@ -27,9 +27,10 @@ Makefile减少命令操作
   2. 接口定义-cwgo+thrift
     1. Interface Description Language：Thrift严格定义接口IDL
     2. 安装cwgo
-    3. cwgo终端自动补全功能CloudWeGo All in one 代码生成工具
+    3. 基于IDL生成代码生成微服务应用-cwgo终端自动补全功能CloudWeGo All in one 代码生成工具
     添加自动补全组件终端cwgo然后可以查看
-    创建server项目：mkdir -p app/service_name
+    创建server项目：
+    mkdir -p app/service_name
     cwgo server --type RPC --module github.com/zjhM3l/go-e-commerce/app/service_name --service service_name --idl ../../idl/service.thrift
     <!-- 2. 使用Kitex生成带有脚手架的代码
     kitex -module github.com/zjhM3l/go-e-commerce -service checkoutservice idl/checkout.thrift
@@ -39,7 +40,19 @@ Makefile减少命令操作
     hz update -idl idl/user.thrift -->
   3. Kitex-服务注册与发现Etcd，Nacos，Zookeeper（最后用的ETCD）（见Go三件套笔记对应部分和代码示例）
   注册中心用consol，配置中心用etcd
+    1. 服务端，服务启动相关代码位置，KitexInit中编写，复制官网consul相关示例，初始化consol，注册中心启动之后配置注册主键（注意要读取配置不要写死）
+    2. 利用docker启动consol注册中心的容器
+    3. 编写客户端代码，代码发现实例并且接口调用
+    tips
+    1. 建议使用Kitex的XDS扩展，多泳道做多套测试环境维护（多人开发）
+    2. opentelemetry检测，打通gorm、kitex与hertz三件套，全流程链路追踪、检测、日志打通
   D:\studyANDworkFiles\bytedance24\kitex-registry-etcd-sample\registry-etcd\example\client\main.go
-  4. 建议使用Kitex的XDS扩展，多泳道做多套测试环境维护（多人开发）
-  5. opentelemetry检测，打通gorm、kitex与hertz三件套，全流程链路追踪、检测、日志打通
-  6. 数据存储：MySQL，Redis
+  4. 配置管理file(yaml, json, toml)/env/config，配置中心
+    每个微服务下方conf，conf.go解析配置文件，dev/online/test分别对应开发生产测试三个环境配置
+  5. GORM数据操作-数据存储：MySQL，Redis
+  6. 微服务通信
+
+第一版本时间紧，以后端为主，前端用hertz写的，没有做前后端分离，页面数据放在服务端生成
+1. UI-Bootstrap，Fontawesome
+2. 页面骨架：GolangTemplate生成 
+  hertz提供了渲染数据的用法，结合golang的html/template和text/template
