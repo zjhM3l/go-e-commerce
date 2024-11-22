@@ -1,5 +1,7 @@
 编码规范：gofmt + goimports
 
+Makefile减少命令操作
+
 性能分析工具pprof
     CPU分析
     堆内存分析
