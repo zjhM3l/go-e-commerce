@@ -1,6 +1,6 @@
 编码规范：gofmt + goimports
 
-Makefile减少命令操作
+Makefile减少命令操作,直接make 字段即可
 
 性能分析工具pprof
     CPU分析
@@ -60,7 +60,12 @@ Makefile减少命令操作
   1. frontend idl(为了练习，这里用的proto3)
   2. hertz快速生成服务端代码
   cd到app/frontend
-  cwgo server --type HTTP --idl ../../idl/frontend/home.proto --service frontend -module github.com/zjhM3l/go-e-commerce/backend/app/frontend -I ../../idl
+  cwgo server --type HTTP --idl ../../idl/frontend/auth_page.proto --service frontend --module github.com/zjhM3l/go-e-commerce/backend/app/frontend -I ../../idl
+
+  如果已经有了，然后要更新代码生成的话，还是重新生成，hertz不会直接顶掉我们自己的代码
+
+  这里为了方便操作可以Makefile然后make 命令
+
   业务逻辑biz
     dal数据库访问层
     handler=controller-只负责基本的参数校验和视图模型加载
@@ -94,7 +99,7 @@ Makefile减少命令操作
     -hertz-contrib/jwt 基于json的开放标准，基于访问令牌的身份认证技术，特别是单点登录的实现，实现了服务端的无状态，把状态信息保存在了客户端token中，需要注意对请求和数据的加密
     -hertz-contrib/paseto 安全无状态令牌的规范和参考实现，在鉴于jwt过于自由，容易出现漏洞和不完全算法的使用下，paseto提出了安全隐私易用性多语言跨平台的令牌方案
     -hertz-contrib/keyauth 工具库，帮助用户实现token的鉴权，协助在程序中对token的校验、统一处理、获取、在上下文中传递
-  3. 登录注册页面
-  4. 用户服务接口
+  3. 登录注册页面，action逻辑接到auth里面的登录注册接口
+  4. 用户服务接口auth_page.proto，然后因为empty反复使用，所以单独开了个common.proto
   5. 鉴权和权限控制
     用户态写入session，根据session鉴权和权限控制
