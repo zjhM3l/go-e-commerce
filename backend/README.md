@@ -69,3 +69,21 @@ Makefile减少命令操作
   4. 引入air热加载工具，方便调试
   5. bootstrap编写样式
   6. 布局优化
+
+  用户服务
+  1. 身份管理
+    身份：身份证、邮箱、用户名密码...
+    鉴权：服务端确认用户身份，但是用户（自然人）无法直接与服务端交互，委派给客户端（浏览器app）进行一定范围的数据资源操作
+    授权结果：浏览器cookie和session，API凭证token
+    Authorization授权：实现上述流程的过程
+    Authentication鉴权：客户端被授予的身份鉴定和确认，对上述确认过的身份凭证进行解析和确认
+    权限控制Permission control：对可执行的各种操作进行组合配置，成为权限列表，根据执行者的权限，操作在权限范围内允许执行，否则禁止
+  2. Hertz相关中间件
+    -hertz-contrib/sessions 管理session，基于cookie和redis两种实现方式，session最传统的会话技术，通过客户端传递sessionid来识别保存在服务端上的上下文信息
+    -hertz-contrib/jwt 基于json的开放标准，基于访问令牌的身份认证技术，特别是单点登录的实现，实现了服务端的无状态，把状态信息保存在了客户端token中，需要注意对请求和数据的加密
+    -hertz-contrib/paseto 安全无状态令牌的规范和参考实现，在鉴于jwt过于自由，容易出现漏洞和不完全算法的使用下，paseto提出了安全隐私易用性多语言跨平台的令牌方案
+    -hertz-contrib/keyauth 工具库，帮助用户实现token的鉴权，协助在程序中对token的校验、统一处理、获取、在上下文中传递
+  3. 登录注册页面
+  4. 用户服务接口
+  5. 鉴权和权限控制
+    用户态写入session，根据session鉴权和权限控制
