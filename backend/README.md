@@ -60,7 +60,7 @@ Makefile减少命令操作,直接make 字段即可
   1. frontend idl(为了练习，这里用的proto3)
   2. hertz快速生成服务端代码
   cd到app/frontend
-  cwgo server --type HTTP --idl ../../idl/frontend/auth_page.proto --service frontend --module github.com/zjhM3l/go-e-commerce/backend/app/frontend -I ../../idl
+  cwgo server --type HTTP --idl ../../idl/frontend/home.proto --service frontend --module github.com/zjhM3l/go-e-commerce/backend/app/frontend -I ../../idl
 
   如果已经有了，然后要更新代码生成的话，还是重新生成，hertz不会直接顶掉我们自己的代码
 
@@ -103,3 +103,7 @@ Makefile减少命令操作,直接make 字段即可
   4. 用户服务接口auth_page.proto，然后因为empty反复使用，所以单独开了个common.proto
   5. 鉴权和权限控制
     用户态写入session，根据session鉴权和权限控制
+    1. 引用sessions(go get github.com/hertz-contrib/sessions)，基于redis的例子，放在前端微服务的main里面，registerMiddleware的最前面，引入redis后在docker-compose.yaml写上redis
+    然后在dockercopose好consul，mysql还有redis
+    然后在backend启动一下docker compose up -d
+

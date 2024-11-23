@@ -17,6 +17,8 @@ import (
 	"github.com/hertz-contrib/logger/accesslog"
 	hertzlogrus "github.com/hertz-contrib/logger/logrus"
 	"github.com/hertz-contrib/pprof"
+	"github.com/hertz-contrib/sessions"
+	"github.com/hertz-contrib/sessions/redis"
 	"github.com/zjhM3l/go-e-commerce/backend/app/frontend/biz/router"
 	"github.com/zjhM3l/go-e-commerce/backend/app/frontend/conf"
 	"go.uber.org/zap/zapcore"
@@ -62,6 +64,10 @@ func main() {
 }
 
 func registerMiddleware(h *server.Hertz) {
+	// session
+	store, _ := redis.NewStore(10, "tcp", "localhost:6379", "", []byte("secret"))
+	h.Use(sessions.New("go-ecommerce", store))
+
 	// log
 	logger := hertzlogrus.NewLogger()
 	hlog.SetLogger(logger)

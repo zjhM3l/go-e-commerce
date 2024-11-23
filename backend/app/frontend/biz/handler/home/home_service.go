@@ -7,14 +7,14 @@ import (
 	"github.com/cloudwego/hertz/pkg/protocol/consts"
 	"github.com/zjhM3l/go-e-commerce/backend/app/frontend/biz/service"
 	"github.com/zjhM3l/go-e-commerce/backend/app/frontend/biz/utils"
-	home "github.com/zjhM3l/go-e-commerce/backend/app/frontend/hertz_gen/frontend/home"
+	common "github.com/zjhM3l/go-e-commerce/backend/app/frontend/hertz_gen/frontend/common"
 )
 
 // Home .
 // @router / [GET]
 func Home(ctx context.Context, c *app.RequestContext) {
 	var err error
-	var req home.Empty
+	var req common.Empty
 	err = c.BindAndValidate(&req)
 	if err != nil {
 		utils.SendErrResponse(ctx, c, consts.StatusOK, err)
