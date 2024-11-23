@@ -70,6 +70,17 @@ Makefile减少命令操作
   5. bootstrap编写样式
   6. 布局优化
 
+
+这里以home首页的逻辑再次加深理解一下整个框架流程
+  1. 新增微服务（frontend）
+  2. 微服务中新增功能（home）
+    1. 注册路由到微服务frontend下的main.go
+    2. hertz快速生成该功能服务端代码
+  3. 业务实现
+    1. 微服务下service文件夹中对应功能（home.go）中实现主体业务逻辑
+    2. 微服务下handler问价家中对应功能（home_service.go）中为controller，只负责渲染页面和校验参数
+    3. 无误后渲染页面
+
   用户服务
   1. 身份管理
     身份：身份证、邮箱、用户名密码...

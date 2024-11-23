@@ -45,7 +45,7 @@ func main() {
 	// sign-in
 	// tmpl里面{{define "sign-in"}}{{end}}, 这样可以不用写后缀
 	h.GET("/sign-in", func(c context.Context, ctx *app.RequestContext) {
-		ctx.HTML(consts.StatusOK, "sign-in", utils.H{"Title": "Sign In"})
+		ctx.HTML(consts.StatusOK, "sign-in", utils.H{"title": "Sign In"})
 	})
 
 	// about， 同理无后缀

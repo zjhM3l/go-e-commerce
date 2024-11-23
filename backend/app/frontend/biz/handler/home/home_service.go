@@ -27,5 +27,5 @@ func Home(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 	// controller只负责渲染页面和校验参数，具体的业务逻辑在service中实现
-	c.HTML(consts.StatusOK, "home.tmpl", resp)
+	c.HTML(consts.StatusOK, "home", resp)
 }
