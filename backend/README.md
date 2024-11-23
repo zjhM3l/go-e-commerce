@@ -83,7 +83,7 @@ Makefile减少命令操作,直接make 字段即可
     2. hertz快速生成该功能服务端代码
   3. 业务实现
     1. 微服务下service文件夹中对应功能（home.go）中实现主体业务逻辑
-    2. 微服务下handler问价家中对应功能（home_service.go）中为controller，只负责渲染页面和校验参数
+    2. 微服务下handler文件夹中对应功能（home_service.go）中为controller，只负责渲染页面和校验参数
     3. 无误后渲染页面
 
   用户服务
@@ -106,4 +106,10 @@ Makefile减少命令操作,直接make 字段即可
     1. 引用sessions(go get github.com/hertz-contrib/sessions)，基于redis的例子，放在前端微服务的main里面，registerMiddleware的最前面，引入redis后在docker-compose.yaml写上redis
     然后在dockercopose好consul，mysql还有redis
     然后在backend启动一下docker compose up -d
+    注意这里main注册中间件redis时涉及到的环境变量和配置文件的使用,注意gitigore掉
+    2. 一切环境配置好了，开始参考文档redis部分使用session，在service下面的login里面实现主要逻辑，然后登录不需要返还，在handler负责校验渲染，里面auth_service的login部分设置好重定向
+    3. 继续改造，header.tmpl设置选择字段{{ if .user_id }}选择性展示。还是handler负责渲染，这里的字段要从home_service.go给过去
+    home_service.go判断session的部分会经常使用，抽离出去，在util的resp.go实现WarpResponse
+
+    注册逻辑同理：main定义访问路径、渲染页面 -> 新增模板 -> 
 

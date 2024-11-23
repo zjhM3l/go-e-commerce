@@ -36,6 +36,7 @@ require (
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
 	github.com/golang/protobuf v1.5.0 // indirect
+	github.com/gomodule/redigo v1.8.9 // indirect
 	github.com/google/pprof v0.0.0-20211214055906-6f57359322fd // indirect
 	github.com/gorilla/context v1.1.2 // indirect
 	github.com/gorilla/securecookie v1.1.2 // indirect
@@ -47,6 +48,7 @@ require (
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/klauspost/cpuid/v2 v2.0.9 // indirect
 	github.com/kr/text v0.2.0 // indirect
+	github.com/lpernett/godotenv v0.0.0-20230527005122-0de1d4c5ef5e
 	github.com/nyaruka/phonenumbers v1.0.55 // indirect
 	github.com/rogpeppe/go-internal v1.9.0 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect

@@ -27,5 +27,6 @@ func Home(ctx context.Context, c *app.RequestContext) {
 		return
 	}
 	// controller只负责渲染页面和校验参数，具体的业务逻辑在service中实现
-	c.HTML(consts.StatusOK, "home", resp)
+	// WarpResponse函数用于包装返回的数据，添加额外的数据，在utils/resp.go中定义
+	c.HTML(consts.StatusOK, "home", utils.WarpResponse(ctx, c, resp))
 }

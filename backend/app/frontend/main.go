@@ -4,6 +4,7 @@ package main
 
 import (
 	"context"
+	"os"
 	"time"
 
 	"github.com/cloudwego/hertz/pkg/app"
@@ -19,6 +20,7 @@ import (
 	"github.com/hertz-contrib/pprof"
 	"github.com/hertz-contrib/sessions"
 	"github.com/hertz-contrib/sessions/redis"
+	"github.com/lpernett/godotenv"
 	"github.com/zjhM3l/go-e-commerce/backend/app/frontend/biz/router"
 	"github.com/zjhM3l/go-e-commerce/backend/app/frontend/conf"
 	"go.uber.org/zap/zapcore"
@@ -26,6 +28,8 @@ import (
 )
 
 func main() {
+	// load env
+	godotenv.Load()	
 	// init dal
 	// dal.Init()
 	address := conf.GetConf().Hertz.Address
@@ -65,7 +69,9 @@ func main() {
 
 func registerMiddleware(h *server.Hertz) {
 	// session
-	store, _ := redis.NewStore(10, "tcp", "localhost:6379", "", []byte("secret"))
+	// 为了方便后续更改，使用conf.GetConf().Redis.Address，config.yaml中配置
+	// 隐私信息不应该写在代码中，改成从环境变量中读取.env
+	store, _ := redis.NewStore(10, "tcp", conf.GetConf().Redis.Address, "", []byte(os.Getenv("SESSION_SECRET")))
 	h.Use(sessions.New("go-ecommerce", store))
 
 	// log

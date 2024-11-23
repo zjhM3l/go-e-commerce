@@ -31,7 +31,7 @@ func (h *HomeService) Run(req *common.Empty) (map[string]any, error) {
 		{"Name": "T-shirt-5", "Price": 140, "Picture": "/static/image/t-shirt-1.jpeg"},
 		{"Name": "T-shirt-6", "Price": 150, "Picture": "/static/image/t-shirt.jpeg"},
 	}
-	resp["Title"] = "Hot Sales"
+	resp["title"] = "Hot Sales"
 	resp["items"] = items
 	return resp, nil
 }
