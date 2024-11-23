@@ -42,6 +42,22 @@ func main() {
 	// load static file
 	h.Static("/static", "./")
 
+	// sign-in
+	// tmpl里面{{define "sign-in"}}{{end}}, 这样可以不用写后缀
+	h.GET("/sign-in", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(consts.StatusOK, "sign-in", utils.H{"Title": "Sign In"})
+	})
+
+	// about， 同理无后缀
+	h.GET("/about", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(consts.StatusOK, "about", utils.H{"title": "About"})
+	})
+
+	// sign-up，同理无后缀
+	h.GET("/sign-up", func(c context.Context, ctx *app.RequestContext) {
+		ctx.HTML(consts.StatusOK, "sign-up", utils.H{"title": "Sign Up"})
+	})
+
 	h.Spin()
 }
 
